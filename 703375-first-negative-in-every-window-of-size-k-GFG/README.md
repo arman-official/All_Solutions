@@ -1,4 +1,4 @@
-# [First negative in every window of size k](https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/0)
+# [First negative in every window of size k](https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1)
 ## Medium
 Given an array arr[] &nbsp;and a positive integer k, find the first negative integer for each and every window(contiguous subarray) of size k.
 Note:&nbsp;If a window does not contain a negative integer, then return 0 for that window.

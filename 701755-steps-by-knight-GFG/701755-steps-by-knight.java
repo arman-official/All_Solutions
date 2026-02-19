@@ -11,6 +11,10 @@ class pair{
 class Solution {
     public int minStepToReachTarget(int knightPos[], int targetPos[], int n) {
         // Code here
+        if(knightPos[0] == targetPos[0] &&
+           knightPos[1] == targetPos[1])
+            return 0;
+
         int[] dr={-1,-1,1,1,-2,-2,2,2};
         int[] dc={-2,2,-2,2,-1,1,-1,1};
         Queue<pair> q=new LinkedList<>();
@@ -33,7 +37,7 @@ class Solution {
                     
                 }
             }
-        }return 0;
+        }return -1;
         
     }
     public boolean isValid(int x,int y,int n){

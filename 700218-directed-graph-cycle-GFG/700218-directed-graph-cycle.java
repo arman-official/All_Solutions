@@ -9,26 +9,26 @@ class Solution {
             adj.get(edges[i][0]).add(edges[i][1]);
         }
         boolean res=false;
-        for(int i= 0;i<V;i++){
-            
-        res= fun(vis,currPath,i,adj);
-        if(res)return res;
-        }
-        return res;
-    }public boolean fun(boolean[] vis,boolean[] currPath,int node,ArrayList<ArrayList<Integer>> adj){
-        // if(currPath[node])return true;
-        vis[node]=true;
-        currPath[node]=true;
-        boolean result=false;
-        for(int neighbors:adj.get(node)){
-            if(currPath[neighbors])return true;
-            if(!vis[neighbors]){
-                result= result || fun(vis,currPath,neighbors,adj);
-                if(result)return result;
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+            res= res||fun(adj,vis,currPath,i);
+            if(res)return res;
             }
+        }return res;
+    }
+    public boolean fun(ArrayList<ArrayList<Integer>> adj,boolean[] vis,boolean[] currPath,int node){
+        if(currPath[node])return true;
+        if(vis[node])return false;
+        currPath[node]=true;
+        vis[node]=true;
+        boolean b=false;
+        for(int nbr:adj.get(node)){
+            b= b|| fun(adj,vis,currPath,nbr);
+            if(b)return b;
         }
         currPath[node]=false;
-        return result;
+        return b;
+        
         
     }
 }

@@ -2,39 +2,36 @@ class pair{
     int node;
     int dis;
     pair(int x,int y){
-        this.node=x;
-        this.dis=y;
+        node=x;
+        dis=y;
     }
 }
 class Solution {
     public int[] dijkstra(int V, int[][] edges, int src) {
         // code here
-        int[] distance=new int[V];
-        Arrays.fill(distance,(int)(1e9));
-        distance[src]=0;
+        int[] dist=new int[V];
+        Arrays.fill(dist,(int)(1e9));
+        dist[src]=0;
         ArrayList<ArrayList<pair>> adj=new ArrayList<>();
         for(int i=0;i<V;i++)adj.add(new ArrayList<pair>());
         for(int i=0;i<edges.length;i++){
             adj.get(edges[i][0]).add(new pair(edges[i][1],edges[i][2]));
             adj.get(edges[i][1]).add(new pair(edges[i][0],edges[i][2]));
         }
-        PriorityQueue<pair> pq=new PriorityQueue<>((a,b)-> a.dis-b.dis);
-        
+        PriorityQueue<pair> pq=new PriorityQueue<>((a,b)->a.dis-b.dis);
         pq.add(new pair(src,0));
         while(!pq.isEmpty()){
             pair top=pq.remove();
-            int currNode=top.node;
-            int edgeWt=top.dis;
-            if(edgeWt>distance[currNode])continue;
-            for(int i=0;i<adj.get(currNode).size();i++){
-                pair nbr= adj.get(currNode).get(i);
-                if(edgeWt + nbr.dis<distance[nbr.node]){
-                    distance[nbr.node]=edgeWt+ nbr.dis;
-                    pq.add(new pair(nbr.node,distance[nbr.node]));
+            int nnode=top.node;
+            int ndis=top.dis;
+            for(int i=0;i<adj.get(nnode).size();i++){
+                pair nbr=adj.get(nnode).get(i);
+                if(dist[nbr.node]> ndis+nbr.dis){
+                    dist[nbr.node]= ndis+nbr.dis;
+                    pq.add(new pair(nbr.node,dist[nbr.node]));
                 }
             }
-            
-        }return distance;
-        
+        }
+        return dist;
     }
 }
